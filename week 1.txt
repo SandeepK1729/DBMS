@@ -485,3 +485,29 @@ mysql> select name, rating + 1 as rating from sailor where sid in (
     -> se;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
 mysql> select name, rating + 1 as rating from sailor where sid in (
+    -> select sid from reserves r1, reserves r2 where r1.sid <> r2.sid and r1.day = r2.day);
+ERROR 1052 (23000): Column 'sid' in field list is ambiguous
+mysql> select name, rating + 1 as rating from sailor where sid in (
+    -> select r1.sid from reserves r1, reserves r2 where r1.sid <> r2.sid and r1.day = r2.day);
+Empty set (0.00 sec)
+
+mysql> select name, rating + 1 as rating from sailor where sid in (
+    -> select r1.sid from reserves r1, reserves r2 where r1.sid = r2.sid and r1.bid <> r2.bid and r1.day = r2.day);
+Empty set (0.00 sec)
+
+mysql> select age from sailor where name like "s%s" and len(name) > 2;
+ERROR 1305 (42000): FUNCTION _6683.len does not exist
+mysql> select ages from sailor where name like "s%s" and len(name) > 2;
+ERROR 1054 (42S22): Unknown column 'ages' in 'field list'
+mysql> select age from sailor where name like "s%s" and len(name) > 2;
+ERROR 1305 (42000): FUNCTION _6683.len does not exist
+mysql> select age from sailor where name like "s%";
++-----+
+| age |
++-----+
+|  19 |
+|  18 |
++-----+
+2 rows in set (0.00 sec)
+
+mysql>
