@@ -16,3 +16,8 @@ Q3 : sailors who reserved red but not green
         sid in (select sid from reserves where bid in ( select bid from Boats where color = "RED")) and
         sid not in (select sid from reserves where bid in ( select bid from Boats where color = "GREEN"));
         
+Q4 : sailors id whose rating is 10 or boat id is not 104
+
+        select sid from Sailors where
+        rating = 10 or
+        sid not in ( select sid from reserves where bid = 104);
