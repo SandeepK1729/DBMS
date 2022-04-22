@@ -4,6 +4,16 @@ Q1 : sailors who reserved red or green boats
         select sid from reserves where bid in (
         select bid from Boats where color in ("RED", "GREEN")));
         
+        +---------+
+        | sname   |
+        +---------+
+        | Dustin  |
+        | Lubber  |
+        | Horatio |
+        | Horatio |
+        +---------+
+        4 rows in set (0.00 sec)
+        
 Q2 : sailors who reserved red and green boats
     
         select sname from Sailors where
@@ -39,4 +49,18 @@ Q7 : sailors who has not red boat
         sid in ( select sid from reserves where
         bid not in ( select bid from Boats where color = "RED"));
         
+  Q8 : sailors whose bid = 103
   
+        select sname from Sailors where
+        sid in ( select sid from reserves where bid = 103);
+        
+        +---------+
+        | sname   |
+        +---------+
+        | Dustin  |
+        | Lubber  |
+        | Horatio |
+        +---------+
+        3 rows in set (0.00 sec)
+        
+       
