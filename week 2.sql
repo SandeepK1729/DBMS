@@ -122,4 +122,57 @@ Q7 : sailors who has not red boat
         +---------+
         3 rows in set (0.00 sec)
         
-       
+Q9 : sailor whose rating is better than rating of horatio
+
+        select sname from sailors where
+        (select max(rating) from sailors where sname = "Horatio") > rating;
+        
+        +---------+
+        | sname   |
+        +---------+
+        | Dustin  |
+        | Brutus  |
+        | Lubber  |
+        | Andy    |
+        | Horatio |
+        | Art     |
+        | Bob     |
+        +---------+
+        7 rows in set (0.02 sec)
+        
+Q10 : find the sailors with highest rating 
+
+        select sname from sailors order by rating desc;
+        
+        +---------+
+        | sname   |
+        +---------+
+        | Rusty   |
+        | Zorba   |
+        | Horatio |
+        | Lubber  |
+        | Andy    |
+        | Dustin  |
+        | Horatio |
+        | Art     |
+        | Bob     |
+        | Brutus  |
+        +---------+
+        10 rows in set (0.00 sec)
+
+Q11 : sailors who reserved both red and green boats
+
+        select sname from Sailors where
+        sid in (select sid from reserves where bid in ( select bid from Boats where color = "GREEN")) and
+        sid in (select sid from reserves where bid in ( select bid from Boats where color = "RED"));
+        
+        +---------+
+        | sname   |
+        +---------+
+        | Dustin  |
+        | Lubber  |
+        | Horatio |
+        | Horatio |
+        +---------+
+        4 rows in set (0.00 sec)
+        
