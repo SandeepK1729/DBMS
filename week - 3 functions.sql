@@ -89,4 +89,36 @@ Q7 : Find the age of the youngest sailors for each rating level
         +--------+----------+
 Q9 : For each red boat, find the number of reservations for this boat.
   
+    select b.bid, count(r.sid) from boats b, reserves r
+    where r.bid = b.bid and b.color = "Red" group by b.bid;
     
+        +-----+--------------+
+        | bid | count(r.sid) |
+        +-----+--------------+
+        | 102 |            3 |
+        | 104 |            2 |
+        +-----+--------------+
+Q10 : Find the average age of sailors for each rating level that has at least two sailors.
+
+    select rating, avg(age) from sailors group by rating having count(rating) > 1;
+    
+        +--------+----------+
+        | rating | avg(age) |
+        +--------+----------+
+        |      3 |     44.5 |
+        |      7 |       40 |
+        |      8 |     40.5 |
+        |     10 |     25.5 |
+        +--------+----------+
+Q11 : Find the average age of sailors who are of voting age for each rating level that has at least two sailors.
+
+    select rating, avg(age) from sailors where age >= 18 group by rating having count(rating) > 1;
+    
+        +--------+----------+
+        | rating | avg(age) |
+        +--------+----------+
+        |      3 |     44.5 |
+        |      7 |       40 |
+        |      8 |     40.5 |
+        +--------+----------+
+Q12 : Find those ratings for which the average age of sailors is the minimum overall ratings.
