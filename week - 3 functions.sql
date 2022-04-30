@@ -79,15 +79,14 @@ Q7 : Find the age of the youngest sailors for each rating level
         +--------+----------+
  Q8 : Find the age of the youngest sailor who is eligible to vote for each rating level with at least two such sailors. 
  
-     select rating, min(age) from sailors group by rating having count(rating) > 1;
+     select rating, min(age) from sailors where age >= 18 group by rating having count(rating) > 1;
         +--------+----------+
         | rating | min(age) |
         +--------+----------+
         |      3 |     25.5 |
         |      7 |       35 |
         |      8 |     25.5 |
-        |     10 |       16 |
         +--------+----------+
 Q9 : For each red boat, find the number of reservations for this boat.
   
-  
+    
