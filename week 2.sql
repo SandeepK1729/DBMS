@@ -25,8 +25,6 @@ Q2 : sailors who reserved red and green boats
         +---------+
         | Dustin  |
         | Lubber  |
-        | Horatio |
-        | Horatio |
         +---------+
         4 rows in set (0.00 sec)
         
