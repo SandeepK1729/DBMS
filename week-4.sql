@@ -83,9 +83,34 @@ Q2 : Write a SQL statement to produce a list of all staff member with their name
         +----------+
         4 rows in set (0.00 sec)
  
- 
- 
- 
  Q5 : Given that the bonus of staff is calculated by, Bonus=SQRT(Salary* Award) + 999, Write a SQL statement to print a list of salary and bonus for each staff.
- 
+        
+        select name, salary, (sqrt(salary * award ) + 999) as bonus from staff_record;
+
+        +---------------+---------+--------------------+
+        | name          | salary  | bonus              |
+        +---------------+---------+--------------------+
+        | Jeffrey Lee   | 28463.4 | 1291.2160179933246 |
+        | Hugo Cheung   | 14598.5 | 1169.8712965948348 |
+        | Jennifer Wong |   39850 |  1487.978527135906 |
+        | Melinda Ma    |    7783 | 1215.0972003520637 |
+        | Hilda Leung   | 45670.5 | 1301.2267360774026 |
+        | Nelly Tam     | 45670.5 |  1426.413149072417 |
+        | Mable Mee     |  4530.8 | 1066.3112160392866 |
+        | Barnabv Nge   |  3549.4 | 1132.2178648369609 |
+        | Luaretta Tai  |  8327.3 |  1157.056633565512 |
+        | Gregory tai   | 35542.4 |  1376.053834021085 |
+        +---------------+---------+--------------------+
+        10 rows in set (0.00 sec)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
