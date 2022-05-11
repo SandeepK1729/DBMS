@@ -17,6 +17,7 @@ week - 4 :
 Q1 : Write a SQL statement to produce a list of male staff only, showing their names in upper case, department in lower case and the number of characters in the department
 
         select upper(name) as NAME, lower(department) as DEPT, length(department) as len from staff_record where sex = 'M';
+        
         +---------------+----------+------+
         | NAME          | DEPT     | len  |
         +---------------+----------+------+
@@ -28,4 +29,63 @@ Q1 : Write a SQL statement to produce a list of male staff only, showing their n
         +---------------+----------+------+
         5 rows in set (0.01 sec)
 
-Q2 : 
+Q2 : Write a SQL statement to produce a list of all staff member with their names appended with first letter of their Department
+        
+        select concat( concat(name, '('), concat(substr(department, 1, 1), ')')) as staff from staff_record;
+        
+        +------------------+
+        | staff            |
+        +------------------+
+        | Jeffrey Lee(S)   |
+        | Hugo Cheung(S)   |
+        | Jennifer Wong(S) |
+        | Melinda Ma(P)    |
+        | Hilda Leung(S)   |
+        | Nelly Tam(S)     |
+        | Mable Mee(P)     |
+        | Barnabv Nge(A)   |
+        | Luaretta Tai(A)  |
+        | Gregory tai(P)   |
+        +------------------+
+        10 rows in set (0.00 sec)
+        
+ Q3 : Write a SQL statement to print a list of first names of staff
+        
+        select substr(name, 1, instr(name, ' ')) as first_name from staff_record;
+        
+        +------------+
+        | first_name |
+        +------------+
+        | Jeffrey    |
+        | Hugo       |
+        | Jennifer   |
+        | Melinda    |
+        | Hilda      |
+        | Nelly      |
+        | Mable      |
+        | Barnabv    |
+        | Luaretta   |
+        | Gregory    |
+        +------------+
+        10 rows in set (0.00 sec)
+        
+ Q4 : Write a SQL statement to print a list of districts that consists of a single word.The list should not consist of repeating items and is arranged in descending alphabetical order.
+
+        select distinct district from staff_record where instr(district, ' ') = 0 order by district desc;
+        
+        +----------+
+        | district |
+        +----------+
+        | Western  |
+        | Shatin   |
+        | Hunghom  |
+        | Central  |
+        +----------+
+        4 rows in set (0.00 sec)
+ 
+ 
+ 
+ 
+ Q5 : Given that the bonus of staff is calculated by, Bonus=SQRT(Salary* Award) + 999, Write a SQL statement to print a list of salary and bonus for each staff.
+ 
+        
