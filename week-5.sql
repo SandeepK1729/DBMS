@@ -10,8 +10,53 @@ Syntax :
 	for each row 
 	<trigger_body>
 	
-Trigger body: Declare
+Trigger body: 
+	Declare
 		<declare statement>
-	      begin
+      	begin
 		<trigger statement>
-	      end;
+      	end;
+	
+Example-1:
+mysql> create table student(sid int,name varchar(20), branch varchar(10));
+	Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter @
+
+mysql> create trigger trig
+    -> before insert
+    -> on student
+    -> for each row
+    -> begin
+    -> insert into log values ("one row is created");
+    -> end
+    -> @
+	Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from student;
+    -> @
+	Empty set (0.00 sec)
+
+mysql> select * from log;@
+	Empty set (0.00 sec)
+
+mysql> insert into student values(1, "K. Sandeep", "CSM");@
+	Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
+    -> @
+	+------+------------+--------+
+	| sid  | name       | branch |
+	+------+------------+--------+
+	|    1 | K. Sandeep | CSM    |
+	+------+------------+--------+
+	1 row in set (0.00 sec)
+
+mysql> select * from log;@
+	+--------------------+
+	| log                |
+	+--------------------+
+	| one row is created |
+	+--------------------+
+	1 row in set (0.00 sec)
+
