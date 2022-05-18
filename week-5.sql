@@ -24,10 +24,8 @@ mysql> create table student(sid int,name varchar(20), branch varchar(10));
 mysql> delimiter @
 
 mysql> create trigger trig
-    -> before insert
-    -> on student
-    -> for each row
-    -> begin
+    -> before insert on student
+    -> for each row begin
     -> insert into log values ("one row is created");
     -> end
     -> @
@@ -60,3 +58,12 @@ mysql> select * from log;@
 	+--------------------+
 	1 row in set (0.00 sec)
 
+Example-2:
+	create trigger norder 
+	after update on medicine
+	for each row begin
+		if new.quantity < 20 then 
+			insert into neworder values(new.mid, new.medicine, new.quantity);
+		endif;
+	end;
+	@
